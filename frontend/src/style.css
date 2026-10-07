@@ -1,0 +1,492 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f6f7f9;
+  color: #172338;
+  font-family: system-ui, sans-serif;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 5vw;
+  background: white;
+  border-bottom: 1px solid #dfe5ea;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 650;
+}
+.brand:first-letter {
+  font-size: 24px;
+}
+main {
+  max-width: 1160px;
+  min-height: 70vh;
+  margin: 6vh auto;
+  padding: 32px;
+}
+.welcome {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #386b61;
+}
+h1 {
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+h2 {
+  font-size: 25px;
+  letter-spacing: -0.03em;
+}
+p {
+  line-height: 1.7;
+  color: #526078;
+}
+section {
+  padding: 32px;
+  background: white;
+  border: 1px solid #dfe5ea;
+  border-radius: 16px;
+}
+.badge {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: #e5f2ed;
+  color: #276251;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+a {
+  color: #276251;
+  text-underline-offset: 4px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+}
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 8px;
+}
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #b7c4ce;
+  border-radius: 8px;
+  font: inherit;
+  background: white;
+  color: #172338;
+}
+button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #276251;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.text-button {
+  background: transparent;
+  color: #276251;
+  padding: 4px 0;
+  font-size: 14px;
+}
+.help {
+  font-size: 13px;
+  margin-top: 10px;
+}
+.error {
+  padding: 12px;
+  color: #922c39;
+  background: #fff0f1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.coming-next {
+  padding: 16px 24px;
+  background: #f6f7f9;
+  border-radius: 12px;
+  margin: 28px 0;
+}
+.workspace {
+  max-width: 760px;
+  margin: auto;
+}
+footer {
+  text-align: center;
+  color: #526078;
+  font-size: 12px;
+  padding: 24px;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #438774;
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  .welcome {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  main {
+    padding: 20px;
+    margin: 24px auto;
+  }
+  .intro h1 {
+    margin: 14px 0;
+  }
+  .badge {
+    display: none;
+  }
+  header {
+    padding: 20px;
+  }
+  .auth-card {
+    padding: 24px;
+  }
+}
+.tracker-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 36px;
+}
+.tracker-content {
+  min-width: 0;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #dfe5ea;
+  padding-right: 20px;
+}
+.nav-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: #526078;
+  margin: 6px 0;
+  font-size: 14px;
+}
+.nav-item.selected {
+  background: #e5f2ed;
+  color: #276251;
+}
+.account {
+  margin-top: auto;
+  padding-top: 40px;
+}
+.account p {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.page-heading h1 {
+  font-size: 40px;
+  margin: 12px 0;
+}
+.page-heading button {
+  white-space: nowrap;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  margin: 24px 0;
+}
+.filters label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 160px;
+  margin: 0;
+  font-size: 12px;
+  gap: 6px;
+}
+.filters input,
+.filters select {
+  font-size: 13px;
+  padding: 9px;
+}
+.record-list {
+  display: grid;
+  gap: 12px;
+}
+.record {
+  background: white;
+  border: 1px solid #dfe5ea;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.record h2 {
+  font-size: 21px;
+  margin: 6px 0;
+}
+.record p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.record .company-name {
+  color: #276251;
+  font-weight: 600;
+  font-size: 12px;
+}
+.record-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 150px;
+}
+.record-actions button {
+  font-size: 13px;
+  margin-top: 8px;
+}
+.secondary {
+  background: #edf2f5;
+  color: #34495e;
+}
+.notes {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 65ch;
+}
+.record .badge {
+  display: inline-block;
+  text-transform: capitalize;
+}
+.result-count {
+  font-size: 12px;
+}
+.empty-state {
+  text-align: center;
+  padding: 40px;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 13px;
+}
+.pagination button {
+  font-size: 13px;
+}
+.pagination span {
+  margin-top: 20px;
+}
+dialog {
+  border: 1px solid #dfe5ea;
+  border-radius: 16px;
+  padding: 28px;
+  width: min(640px, calc(100% - 32px));
+  max-height: 90vh;
+  color: #172338;
+  box-shadow: 0 24px 80px #17233830;
+}
+dialog::backdrop {
+  background: #17233866;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.modal-header h2 {
+  margin: 0;
+}
+.modal-header button {
+  margin: 0;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+.field span {
+  font-size: 13px;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+select,
+textarea {
+  width: 100%;
+  font: inherit;
+  padding: 12px 14px;
+  border: 1px solid #b7c4ce;
+  border-radius: 8px;
+  background: white;
+  color: #172338;
+}
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #438774;
+  outline-offset: 4px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+.description-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font:
+    14px/1.7 system-ui,
+    sans-serif;
+  padding: 20px;
+  background: #f6f7f9;
+  border-radius: 8px;
+}
+@media (max-width: 760px) {
+  .tracker-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .sidebar {
+    border: 0;
+    padding: 0;
+  }
+  .sidebar > p {
+    display: none;
+  }
+  .sidebar nav {
+    display: flex;
+    gap: 4px;
+  }
+  .nav-item {
+    text-align: center;
+    padding: 12px 8px;
+  }
+  .account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+  .account button {
+    margin: 0;
+  }
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+  .page-heading h1 {
+    font-size: 32px;
+  }
+  .page-heading button {
+    margin: 4px 0;
+  }
+  .record {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .record-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .record .badge {
+    display: inline-block;
+  }
+  dialog {
+    padding: 20px;
+  }
+}
+
+.field > label {
+  margin: 0;
+  font-size: 13px;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+.timeline li {
+  border-left: 2px solid #bfd5cd;
+  padding: 0 0 22px 20px;
+}
+.timeline strong {
+  display: block;
+  text-transform: capitalize;
+  color: #276251;
+}
+.timeline time {
+  display: block;
+  font-size: 13px;
+  color: #526078;
+  margin: 6px 0;
+}
+.timeline small {
+  color: #718096;
+  font-size: 11px;
+}
+.timeline p {
+  margin: 6px 0;
+}
+.record h2,
+.record .company-name {
+  overflow-wrap: anywhere;
+}
+.record > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+@media (max-width: 760px) {
+  .sidebar nav {
+    flex-wrap: wrap;
+  }
+  .nav-item {
+    width: auto;
+    flex: 1 1 40%;
+  }
+}
