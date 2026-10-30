@@ -105,3 +105,40 @@ def test_report_pools_samples_instead_of_averaging_percentiles(tmp_path):
     assert result["overall"]["requests"] == 101
     assert result["overall"]["p95_ms"] == 1
     assert result["run_p95_range_ms"] == [1, 1000]
+
+
+def test_comparison_requires_matched_complete_successful_runs():
+    from copy import deepcopy
+
+    import pytest
+
+    from benchmarks.compare import compare
+
+    before = {
+        "complete": True,
+        "configuration": {"seconds": 60},
+        "dataset": {"applications": 10000},
+        "workloads": {"search": "/applications?q=Backend"},
+        "results": [
+            {
+                "concurrency": 25,
+                "repetitions": 3,
+                "overall": {"success_percent": 100, "p95_ms": 400},
+                "endpoints": {"search": {"p95_ms": 500}},
+            }
+        ],
+    }
+    after = deepcopy(before)
+    after["results"][0]["overall"]["p95_ms"] = 200
+    after["results"][0]["endpoints"]["search"]["p95_ms"] = 300
+    metrics = compare(before, after)["comparison"][0]["metrics"]
+    assert metrics["overall"]["p95_reduction_percent"] == 50
+    assert metrics["search"]["p95_reduction_percent"] == 40
+    for key, value in (("complete", False), ("dataset", {"applications": 100})):
+        invalid = deepcopy(after)
+        invalid[key] = value
+        with pytest.raises(ValueError):
+            compare(before, invalid)
+    after["results"][0]["overall"]["success_percent"] = 99
+    with pytest.raises(ValueError):
+        compare(before, after)

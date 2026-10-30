@@ -56,3 +56,9 @@ The following rounds p95 upward from 318.6 to 319 ms and identifies the local sy
 ```
 
 For a specifically search-focused claim, use **386 ms p95** (rounded upward from 385.8), not the 319 ms mixed-workload figure. Avoid claiming real user adoption, production latency, maximum capacity, or percentage speedups from this baseline.
+
+## Subsequent optimization
+
+The [October 30 query optimization study](search-optimization.md) repeats both
+versions under matched conditions and measures a 40% search-p95 reduction. Its
+new before/after baseline is separate from the historical results above.

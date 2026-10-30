@@ -85,3 +85,38 @@ and image IDs identify the measured code even while the Git worktree is dirty.
 
 See the [measured baseline](../docs/performance.md) for the completed October 29
 run, raw observations, environment details, and defensible résumé wording.
+
+## Before/after query study
+
+See [the October 30 optimization study](../docs/search-optimization.md) for the
+matched comparison and evidence. Preserve a baseline Docker image before building
+the changed backend. Run each version against the same dedicated database and
+private session manifest with identical arguments, collecting environment metadata
+for each build. Stop other test/build activity during measured runs.
+
+```sh
+# Wait for /api/v1/health/ready after each container restart.
+# Repeat against each version; use a distinct output directory for each.
+backend/.venv/bin/python -m benchmarks.load \
+  --manifest /tmp/tracker-benchmark-session.json \
+  --output benchmarks/results/before \
+  --concurrency 25 --warmup 20 --seconds 60 --repeats 3
+# After rebuilding/restarting the optimized backend, repeat with output .../after.
+backend/.venv/bin/python -m benchmarks.compare \
+  benchmarks/results/before benchmarks/results/after \
+  --output benchmarks/results/comparison.json
+```
+
+`compare` pools raw samples for each version and checks matching configurations,
+datasets, workload definitions, repetition counts, and 100% validated success.
+Environment/source/image equivalence still requires reviewing the metadata; the
+tool cannot establish causal attribution by itself. Run the original image again
+afterward as an order-effect control. Keep that control separate from the matched
+three-run aggregates. Use a fresh seed if the synthetic sessions have expired;
+never authenticate a real account for this experiment.
+
+For warm SQL plans, mount this repository's `benchmarks/` directory into the API
+container at `/app/benchmarks` and run `python -m benchmarks.plans`. It refuses any
+database other than `tracker_benchmark`, captures the repository's two search
+queries, and explains each five times. This script is read-only and should run
+outside the timed HTTP measurement windows.

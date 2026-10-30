@@ -97,8 +97,11 @@ Vite proxies `/api` to FastAPI, so browser requests stay on the same origin.
 
 ## Verification
 
-**65 backend tests passed** both locally and in a Python 3.12 container against
-PostgreSQL 17. Verification also covered Docker startup/migrations, the frontend
+**66 backend tests passed** in a Python 3.12 container against PostgreSQL 17 on
+October 30, 2026, including query-result equivalence checks. Five benchmark harness
+tests also passed. The [query optimization study](docs/search-optimization.md)
+records a measured 40% reduction in search p95 in local Docker.
+Earlier verification also covered Docker startup/migrations, the frontend
 production build, an end-to-end API smoke workflow, public HTTPS/cookie behavior,
 and database backup/restoration. These are recorded results, not a claim that a
 GitHub Actions run has already passed.

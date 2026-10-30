@@ -1,0 +1,369 @@
+{
+  "before": {
+    "complete": true,
+    "started_at": "2026-10-30T14:41:15.245153+00:00",
+    "finished_at": "2026-10-30T14:45:17.117509+00:00",
+    "configuration": {
+      "warmup_seconds": 20.0,
+      "measurement_seconds": 60.0,
+      "repeats": 3,
+      "concurrency": [
+        25
+      ],
+      "timeout_seconds": 10,
+      "model": "closed loop; no think time; equal round-robin read workload"
+    },
+    "dataset": {
+      "dataset_version": 1,
+      "applications": 10000,
+      "jobs": 10000,
+      "companies": 100,
+      "events": 37500,
+      "expected": {
+        "list": 10000,
+        "search": 2500,
+        "filter": 833,
+        "later_page": 10000
+      }
+    },
+    "workloads": {
+      "list": "/applications?page=1&page_size=25&sort=newest",
+      "search": "/applications?q=Backend&page=1&page_size=25&sort=company",
+      "filter": "/applications?status=offer&location=Toronto&page=1&page_size=25&sort=oldest",
+      "later_page": "/applications?page=100&page_size=25&sort=newest"
+    },
+    "results": [
+      {
+        "concurrency": 25,
+        "repetitions": 3,
+        "elapsed_seconds": 180.6218051659962,
+        "overall": {
+          "requests": 23490,
+          "successes": 23490,
+          "success_percent": 100.0,
+          "requests_per_second": 130.05074320020262,
+          "successful_requests_per_second": 130.05074320020262,
+          "median_ms": 190.46562499715947,
+          "p95_ms": 309.7930000076303,
+          "successful_p95_ms": 309.7930000076303,
+          "max_ms": 660.6736669928068,
+          "errors": {}
+        },
+        "run_p95_range_ms": [
+          306.0140409943415,
+          313.8475000014296
+        ],
+        "endpoints": {
+          "list": {
+            "requests": 5874,
+            "successes": 5874,
+            "success_percent": 100.0,
+            "requests_per_second": 32.52099044521031,
+            "successful_requests_per_second": 32.52099044521031,
+            "median_ms": 174.2685409990372,
+            "p95_ms": 277.92645900626667,
+            "successful_p95_ms": 277.92645900626667,
+            "max_ms": 430.5664579878794,
+            "errors": {}
+          },
+          "search": {
+            "requests": 5879,
+            "successes": 5879,
+            "success_percent": 100.0,
+            "requests_per_second": 32.548672595742495,
+            "successful_requests_per_second": 32.548672595742495,
+            "median_ms": 231.63479199865833,
+            "p95_ms": 372.33062500308733,
+            "successful_p95_ms": 372.33062500308733,
+            "max_ms": 660.6736669928068,
+            "errors": {}
+          },
+          "filter": {
+            "requests": 5868,
+            "successes": 5868,
+            "success_percent": 100.0,
+            "requests_per_second": 32.487771864571684,
+            "successful_requests_per_second": 32.487771864571684,
+            "median_ms": 178.37875000259373,
+            "p95_ms": 288.1192919885507,
+            "successful_p95_ms": 288.1192919885507,
+            "max_ms": 466.2902089912677,
+            "errors": {}
+          },
+          "later_page": {
+            "requests": 5869,
+            "successes": 5869,
+            "success_percent": 100.0,
+            "requests_per_second": 32.49330829467812,
+            "successful_requests_per_second": 32.49330829467812,
+            "median_ms": 180.3052079922054,
+            "p95_ms": 288.9207090047421,
+            "successful_p95_ms": 288.9207090047421,
+            "max_ms": 514.9707910022698,
+            "errors": {}
+          }
+        }
+      }
+    ],
+    "raw_sha256": {
+      "c25-r1.csv": "181b367a64efcdd0975e54e23937b60843f9f039189f5a532dd589b146826b11",
+      "c25-r2.csv": "9c50d31136a74a4bd80a58450c7b6d94e3f6cec2f46e0ecdd46b48bef1c89f2e",
+      "c25-r3.csv": "1dd5eaf471c97fac9ebaa15fbdd6907653e1da09196abcf28caf0f92d3a1f9f9"
+    }
+  },
+  "after": {
+    "complete": true,
+    "started_at": "2026-10-30T14:46:30.059117+00:00",
+    "finished_at": "2026-10-30T14:50:31.678990+00:00",
+    "configuration": {
+      "warmup_seconds": 20.0,
+      "measurement_seconds": 60.0,
+      "repeats": 3,
+      "concurrency": [
+        25
+      ],
+      "timeout_seconds": 10,
+      "model": "closed loop; no think time; equal round-robin read workload"
+    },
+    "dataset": {
+      "dataset_version": 1,
+      "applications": 10000,
+      "jobs": 10000,
+      "companies": 100,
+      "events": 37500,
+      "expected": {
+        "list": 10000,
+        "search": 2500,
+        "filter": 833,
+        "later_page": 10000
+      }
+    },
+    "workloads": {
+      "list": "/applications?page=1&page_size=25&sort=newest",
+      "search": "/applications?q=Backend&page=1&page_size=25&sort=company",
+      "filter": "/applications?status=offer&location=Toronto&page=1&page_size=25&sort=oldest",
+      "later_page": "/applications?page=100&page_size=25&sort=newest"
+    },
+    "results": [
+      {
+        "concurrency": 25,
+        "repetitions": 3,
+        "elapsed_seconds": 180.4601811249886,
+        "overall": {
+          "requests": 36436,
+          "successes": 36436,
+          "success_percent": 100.0,
+          "requests_per_second": 201.90603695983242,
+          "successful_requests_per_second": 201.90603695983242,
+          "median_ms": 118.11629100702703,
+          "p95_ms": 197.99820899788756,
+          "successful_p95_ms": 197.99820899788756,
+          "max_ms": 372.833500005072,
+          "errors": {}
+        },
+        "run_p95_range_ms": [
+          196.6717910108855,
+          200.50137500220444
+        ],
+        "endpoints": {
+          "list": {
+            "requests": 9111,
+            "successes": 9111,
+            "success_percent": 100.0,
+            "requests_per_second": 50.487592017264056,
+            "successful_requests_per_second": 50.487592017264056,
+            "median_ms": 105.39104200142901,
+            "p95_ms": 174.0497920109192,
+            "successful_p95_ms": 174.0497920109192,
+            "max_ms": 319.0398750011809,
+            "errors": {}
+          },
+          "search": {
+            "requests": 9119,
+            "successes": 9119,
+            "success_percent": 100.0,
+            "requests_per_second": 50.53192312648787,
+            "successful_requests_per_second": 50.53192312648787,
+            "median_ms": 146.3744999928167,
+            "p95_ms": 222.43754200462718,
+            "successful_p95_ms": 222.43754200462718,
+            "max_ms": 355.8097909990465,
+            "errors": {}
+          },
+          "filter": {
+            "requests": 9104,
+            "successes": 9104,
+            "success_percent": 100.0,
+            "requests_per_second": 50.44880229669322,
+            "successful_requests_per_second": 50.44880229669322,
+            "median_ms": 115.48104199755471,
+            "p95_ms": 189.7713750076946,
+            "successful_p95_ms": 189.7713750076946,
+            "max_ms": 334.58541599975433,
+            "errors": {}
+          },
+          "later_page": {
+            "requests": 9102,
+            "successes": 9102,
+            "success_percent": 100.0,
+            "requests_per_second": 50.43771951938727,
+            "successful_requests_per_second": 50.43771951938727,
+            "median_ms": 108.18004199245479,
+            "p95_ms": 180.0690410018433,
+            "successful_p95_ms": 180.0690410018433,
+            "max_ms": 372.833500005072,
+            "errors": {}
+          }
+        }
+      }
+    ],
+    "raw_sha256": {
+      "c25-r1.csv": "075ce6486d2278a673b28c88270ce2757fbe324a74bab89ab02bb27cdd039b7a",
+      "c25-r2.csv": "492aeb531f215be886484c84d2b6d7fb853f87a34b25761287c81df63ae675cf",
+      "c25-r3.csv": "4d472c0021608e700292f1b8ee59a1e3bf2e1245a65ac136452855c012b41ea0"
+    }
+  },
+  "comparison": [
+    {
+      "concurrency": 25,
+      "metrics": {
+        "overall": {
+          "before_p95_ms": 309.7930000076303,
+          "after_p95_ms": 197.99820899788756,
+          "p95_reduction_percent": 36.086932566904096
+        },
+        "list": {
+          "before_p95_ms": 277.92645900626667,
+          "after_p95_ms": 174.0497920109192,
+          "p95_reduction_percent": 37.37559474069551
+        },
+        "search": {
+          "before_p95_ms": 372.33062500308733,
+          "after_p95_ms": 222.43754200462718,
+          "p95_reduction_percent": 40.25805908316493
+        },
+        "filter": {
+          "before_p95_ms": 288.1192919885507,
+          "after_p95_ms": 189.7713750076946,
+          "p95_reduction_percent": 34.134443515418695
+        },
+        "later_page": {
+          "before_p95_ms": 288.9207090047421,
+          "after_p95_ms": 180.0690410018433,
+          "p95_reduction_percent": 37.67527373785872
+        }
+      }
+    }
+  ],
+  "baseline_control": {
+    "complete": true,
+    "started_at": "2026-10-30T14:52:20.735998+00:00",
+    "finished_at": "2026-10-30T14:53:41.294645+00:00",
+    "configuration": {
+      "warmup_seconds": 20.0,
+      "measurement_seconds": 60.0,
+      "repeats": 1,
+      "concurrency": [
+        25
+      ],
+      "timeout_seconds": 10,
+      "model": "closed loop; no think time; equal round-robin read workload"
+    },
+    "dataset": {
+      "dataset_version": 1,
+      "applications": 10000,
+      "jobs": 10000,
+      "companies": 100,
+      "events": 37500,
+      "expected": {
+        "list": 10000,
+        "search": 2500,
+        "filter": 833,
+        "later_page": 10000
+      }
+    },
+    "workloads": {
+      "list": "/applications?page=1&page_size=25&sort=newest",
+      "search": "/applications?q=Backend&page=1&page_size=25&sort=company",
+      "filter": "/applications?status=offer&location=Toronto&page=1&page_size=25&sort=oldest",
+      "later_page": "/applications?page=100&page_size=25&sort=newest"
+    },
+    "results": [
+      {
+        "concurrency": 25,
+        "repetitions": 1,
+        "elapsed_seconds": 60.1174598330108,
+        "overall": {
+          "requests": 7781,
+          "successes": 7781,
+          "success_percent": 100.0,
+          "requests_per_second": 129.42995298892208,
+          "successful_requests_per_second": 129.42995298892208,
+          "median_ms": 190.59858399850782,
+          "p95_ms": 311.2187500082655,
+          "successful_p95_ms": 311.2187500082655,
+          "max_ms": 483.452041997225,
+          "errors": {}
+        },
+        "run_p95_range_ms": [
+          311.2187500082655,
+          311.2187500082655
+        ],
+        "endpoints": {
+          "list": {
+            "requests": 1947,
+            "successes": 1947,
+            "success_percent": 100.0,
+            "requests_per_second": 32.38659792692859,
+            "successful_requests_per_second": 32.38659792692859,
+            "median_ms": 171.89712499384768,
+            "p95_ms": 288.6688329890603,
+            "successful_p95_ms": 288.6688329890603,
+            "max_ms": 413.5738750046585,
+            "errors": {}
+          },
+          "search": {
+            "requests": 1944,
+            "successes": 1944,
+            "success_percent": 100.0,
+            "requests_per_second": 32.336695618874764,
+            "successful_requests_per_second": 32.336695618874764,
+            "median_ms": 232.31141599535476,
+            "p95_ms": 375.81358299939893,
+            "successful_p95_ms": 375.81358299939893,
+            "max_ms": 483.452041997225,
+            "errors": {}
+          },
+          "filter": {
+            "requests": 1944,
+            "successes": 1944,
+            "success_percent": 100.0,
+            "requests_per_second": 32.336695618874764,
+            "successful_requests_per_second": 32.336695618874764,
+            "median_ms": 180.0342089991318,
+            "p95_ms": 288.5210419917712,
+            "successful_p95_ms": 288.5210419917712,
+            "max_ms": 483.0409169953782,
+            "errors": {}
+          },
+          "later_page": {
+            "requests": 1946,
+            "successes": 1946,
+            "success_percent": 100.0,
+            "requests_per_second": 32.36996382424398,
+            "successful_requests_per_second": 32.36996382424398,
+            "median_ms": 180.38545799208805,
+            "p95_ms": 290.7442090072436,
+            "successful_p95_ms": 290.7442090072436,
+            "max_ms": 423.47783299919683,
+            "errors": {}
+          }
+        }
+      }
+    ],
+    "raw_sha256": {
+      "c25-r1.csv": "5e5b191d1a5d7fe505b75145d0c4ac91220b8fbe133bdfc3cf950ef04e3a4926"
+    }
+  },
+  "baseline_control_image_id": "sha256:fd91cd8d6cd0392b545b3c7872b8d80e49be4071aecb8ac90efd1e952b67f713"
+}

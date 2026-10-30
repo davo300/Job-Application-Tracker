@@ -75,37 +75,69 @@ class TrackingRepository:
     def applications(
         self, *, q, company_id, status, location, date_from, date_to, sort, page, page_size
     ):
-        stmt = (
-            select(Application, Job, Company)
-            .join(Job, Application.job_id == Job.id)
-            .join(Company, Job.company_id == Company.id)
-            .where(Application.user_id == self.user_id)
-        )
+        # Filter/count application IDs without carrying full joined records through
+        # the scan. Composite foreign keys guarantee the related job/company exist.
+        stmt = select(Application.id).where(Application.user_id == self.user_id)
         if q:
-            stmt = stmt.where(
+            matching_companies = select(Company.id).where(
+                Company.user_id == self.user_id,
+                Company.name.icontains(q, autoescape=True),
+            )
+            matching_jobs = select(Job.id).where(
+                Job.user_id == self.user_id,
                 or_(
                     Job.title.icontains(q, autoescape=True),
-                    Company.name.icontains(q, autoescape=True),
+                    Job.company_id.in_(matching_companies),
+                ),
+            )
+            stmt = stmt.where(
+                or_(
+                    Application.job_id.in_(matching_jobs),
                     Application.notes.icontains(q, autoescape=True),
                 )
             )
-        if company_id:
-            stmt = stmt.where(Job.company_id == company_id)
+        if company_id or location:
+            matching_jobs = select(Job.id).where(Job.user_id == self.user_id)
+            if company_id:
+                matching_jobs = matching_jobs.where(Job.company_id == company_id)
+            if location:
+                matching_jobs = matching_jobs.where(
+                    Job.location.icontains(location, autoescape=True)
+                )
+            stmt = stmt.where(Application.job_id.in_(matching_jobs))
         if status:
             stmt = stmt.where(Application.status == status)
-        if location:
-            stmt = stmt.where(Job.location.icontains(location, autoescape=True))
         if date_from:
             stmt = stmt.where(Application.applied_on >= date_from)
         if date_to:
             stmt = stmt.where(Application.applied_on <= date_to)
+        total = self.db.scalar(select(func.count()).select_from(stmt.subquery()))
         ordering = {
             "newest": Application.applied_on.desc(),
             "oldest": Application.applied_on.asc(),
             "company": func.lower(Company.name),
             "title": func.lower(Job.title),
         }[sort]
-        return self.paginate(stmt.order_by(ordering, Application.id), page, page_size)
+        if sort in {"company", "title"}:
+            stmt = stmt.join(Job, Application.job_id == Job.id)
+            if sort == "company":
+                stmt = stmt.join(Company, Job.company_id == Company.id)
+        page_ids = (
+            stmt.order_by(ordering, Application.id)
+            .offset((page - 1) * page_size)
+            .limit(page_size)
+            .subquery()
+        )
+        # Hydrate only the requested page and retain the same deterministic order.
+        rows = self.db.execute(
+            select(Application, Job, Company)
+            .join(page_ids, Application.id == page_ids.c.id)
+            .join(Job, Application.job_id == Job.id)
+            .join(Company, Job.company_id == Company.id)
+            .where(Application.user_id == self.user_id)
+            .order_by(ordering, Application.id)
+        ).all()
+        return rows, total
 
     def document(self, identifier, lock=False):
         stmt = select(Document).where(Document.id == identifier, Document.user_id == self.user_id)
