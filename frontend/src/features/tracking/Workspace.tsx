@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { ApiError, request } from '../../api/client';
 import { type User } from '../auth/AuthForm';
 import { ApplicationForm, CompanyForm, JobForm, Modal } from './Forms';
+import { DescriptionAnalysis } from './Analysis';
+import { ProfileView } from './Matching';
+import { Dashboard } from './Dashboard';
 import { ApplicationHistory, DocumentsView } from './History';
 import {
   type Application,
@@ -12,7 +15,7 @@ import {
   label,
 } from './types';
 
-type Tab = 'applications' | 'jobs' | 'companies' | 'documents';
+type Tab = 'profile' | 'dashboard' | 'applications' | 'jobs' | 'companies' | 'documents';
 type Editor =
   | { kind: 'company'; company?: Company }
   | { kind: 'job'; job?: Job; description?: string }
@@ -47,6 +50,7 @@ function DescriptionView({ versions }: { versions: Description[] }) {
         </select>
       </label>
       <pre className="description-text">{version?.raw_text}</pre>
+      {version && <DescriptionAnalysis key={version.id} identifier={version.id} />}
     </>
   ) : (
     <p>No description has been stored. Edit this job to add one.</p>
@@ -104,7 +108,7 @@ export function Workspace({
   }, [refresh]);
 
   useEffect(() => {
-    if (tab === 'documents') return;
+    if (tab === 'documents' || tab === 'dashboard' || tab === 'profile') return;
     const controller = new AbortController();
     setLoading(true);
     setError('');
@@ -206,7 +210,9 @@ export function Workspace({
       <aside className="sidebar">
         <p className="eyebrow">YOUR WORKSPACE</p>
         <nav aria-label="Workspace">
-          {(['applications', 'jobs', 'companies', 'documents'] as Tab[]).map((item) => (
+          {(
+            ['dashboard', 'applications', 'jobs', 'companies', 'documents', 'profile'] as Tab[]
+          ).map((item) => (
             <button
               key={item}
               className={tab === item ? 'nav-item selected' : 'nav-item'}
@@ -225,7 +231,11 @@ export function Workspace({
         </div>
       </aside>
       <div className="tracker-content">
-        {tab === 'documents' ? (
+        {tab === 'profile' ? (
+          <ProfileView />
+        ) : tab === 'dashboard' ? (
+          <Dashboard />
+        ) : tab === 'documents' ? (
           <DocumentsView />
         ) : (
           <>
@@ -389,6 +399,8 @@ export function Workspace({
                     {current.total} {filtered ? 'matching ' : ''}
                     {current.total === 1
                       ? {
+                          profile: 'profile',
+                          dashboard: 'dashboard',
                           applications: 'application',
                           jobs: 'job',
                           companies: 'company',

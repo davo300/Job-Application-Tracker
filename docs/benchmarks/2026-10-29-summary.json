@@ -1,0 +1,262 @@
+{
+  "complete": true,
+  "started_at": "2026-10-29T16:49:58.439746+00:00",
+  "finished_at": "2026-10-29T17:12:31.803961+00:00",
+  "configuration": {
+    "warmup_seconds": 30,
+    "measurement_seconds": 120,
+    "repeats": 3,
+    "concurrency": [
+      1,
+      10,
+      25
+    ],
+    "timeout_seconds": 10,
+    "model": "closed loop; no think time; equal round-robin read workload"
+  },
+  "dataset": {
+    "dataset_version": 1,
+    "applications": 10000,
+    "jobs": 10000,
+    "companies": 100,
+    "events": 37500,
+    "expected": {
+      "list": 10000,
+      "search": 2500,
+      "filter": 833,
+      "later_page": 10000
+    }
+  },
+  "workloads": {
+    "list": "/applications?page=1&page_size=25&sort=newest",
+    "search": "/applications?q=Backend&page=1&page_size=25&sort=company",
+    "filter": "/applications?status=offer&location=Toronto&page=1&page_size=25&sort=oldest",
+    "later_page": "/applications?page=100&page_size=25&sort=newest"
+  },
+  "results": [
+    {
+      "concurrency": 1,
+      "repetitions": 3,
+      "elapsed_seconds": 360.0606130410015,
+      "overall": {
+        "requests": 21536,
+        "successes": 21536,
+        "success_percent": 100.0,
+        "requests_per_second": 59.81215167666121,
+        "successful_requests_per_second": 59.81215167666121,
+        "median_ms": 10.961583990138024,
+        "p95_ms": 37.84562500368338,
+        "successful_p95_ms": 37.84562500368338,
+        "max_ms": 141.79495799180586,
+        "errors": {}
+      },
+      "run_p95_range_ms": [
+        37.711791999754496,
+        37.919917012914084
+      ],
+      "endpoints": {
+        "list": {
+          "requests": 5385,
+          "successes": 5385,
+          "success_percent": 100.0,
+          "requests_per_second": 14.955815229328595,
+          "successful_requests_per_second": 14.955815229328595,
+          "median_ms": 8.062458000495099,
+          "p95_ms": 9.729457990033552,
+          "successful_p95_ms": 9.729457990033552,
+          "max_ms": 39.926791010657325,
+          "errors": {}
+        },
+        "search": {
+          "requests": 5385,
+          "successes": 5385,
+          "success_percent": 100.0,
+          "requests_per_second": 14.955815229328595,
+          "successful_requests_per_second": 14.955815229328595,
+          "median_ms": 37.33108300366439,
+          "p95_ms": 39.59749999921769,
+          "successful_p95_ms": 39.59749999921769,
+          "max_ms": 110.25033300393261,
+          "errors": {}
+        },
+        "filter": {
+          "requests": 5383,
+          "successes": 5383,
+          "success_percent": 100.0,
+          "requests_per_second": 14.95026060900201,
+          "successful_requests_per_second": 14.95026060900201,
+          "median_ms": 8.82070799707435,
+          "p95_ms": 10.138000012375414,
+          "successful_p95_ms": 10.138000012375414,
+          "max_ms": 141.79495799180586,
+          "errors": {}
+        },
+        "later_page": {
+          "requests": 5383,
+          "successes": 5383,
+          "success_percent": 100.0,
+          "requests_per_second": 14.95026060900201,
+          "successful_requests_per_second": 14.95026060900201,
+          "median_ms": 11.484791000839323,
+          "p95_ms": 13.19225000042934,
+          "successful_p95_ms": 13.19225000042934,
+          "max_ms": 44.843416995718144,
+          "errors": {}
+        }
+      }
+    },
+    {
+      "concurrency": 10,
+      "repetitions": 3,
+      "elapsed_seconds": 360.2091271660029,
+      "overall": {
+        "requests": 44467,
+        "successes": 44467,
+        "success_percent": 100.0,
+        "requests_per_second": 123.44773257093877,
+        "successful_requests_per_second": 123.44773257093877,
+        "median_ms": 77.9552909953054,
+        "p95_ms": 163.50845800479874,
+        "successful_p95_ms": 163.50845800479874,
+        "max_ms": 1926.8264590064064,
+        "errors": {}
+      },
+      "run_p95_range_ms": [
+        154.7329169989098,
+        174.89041700900998
+      ],
+      "endpoints": {
+        "list": {
+          "requests": 11117,
+          "successes": 11117,
+          "success_percent": 100.0,
+          "requests_per_second": 30.86262718400446,
+          "successful_requests_per_second": 30.86262718400446,
+          "median_ms": 55.23979201097973,
+          "p95_ms": 103.52641699137166,
+          "successful_p95_ms": 103.52641699137166,
+          "max_ms": 925.7585409941385,
+          "errors": {}
+        },
+        "search": {
+          "requests": 11120,
+          "successes": 11120,
+          "success_percent": 100.0,
+          "requests_per_second": 30.870955679241668,
+          "successful_requests_per_second": 30.870955679241668,
+          "median_ms": 115.84329200559296,
+          "p95_ms": 195.85316699522082,
+          "successful_p95_ms": 195.85316699522082,
+          "max_ms": 1926.8264590064064,
+          "errors": {}
+        },
+        "filter": {
+          "requests": 11114,
+          "successes": 11114,
+          "success_percent": 100.0,
+          "requests_per_second": 30.854298688767255,
+          "successful_requests_per_second": 30.854298688767255,
+          "median_ms": 73.0736249970505,
+          "p95_ms": 107.34958300599828,
+          "successful_p95_ms": 107.34958300599828,
+          "max_ms": 980.3049590118462,
+          "errors": {}
+        },
+        "later_page": {
+          "requests": 11116,
+          "successes": 11116,
+          "success_percent": 100.0,
+          "requests_per_second": 30.859851018925394,
+          "successful_requests_per_second": 30.859851018925394,
+          "median_ms": 65.49162499140948,
+          "p95_ms": 109.59933300910052,
+          "successful_p95_ms": 109.59933300910052,
+          "max_ms": 768.3698330074549,
+          "errors": {}
+        }
+      }
+    },
+    {
+      "concurrency": 25,
+      "repetitions": 3,
+      "elapsed_seconds": 360.46383995798533,
+      "overall": {
+        "requests": 46202,
+        "successes": 46202,
+        "success_percent": 100.0,
+        "requests_per_second": 128.17374415526723,
+        "successful_requests_per_second": 128.17374415526723,
+        "median_ms": 189.94074998772703,
+        "p95_ms": 318.62937500409316,
+        "successful_p95_ms": 318.62937500409316,
+        "max_ms": 884.4837499927962,
+        "errors": {}
+      },
+      "run_p95_range_ms": [
+        316.03616700158454,
+        321.51066699589137
+      ],
+      "endpoints": {
+        "list": {
+          "requests": 11553,
+          "successes": 11553,
+          "success_percent": 100.0,
+          "requests_per_second": 32.05037154724476,
+          "successful_requests_per_second": 32.05037154724476,
+          "median_ms": 173.18624998733867,
+          "p95_ms": 288.3158329932485,
+          "successful_p95_ms": 288.3158329932485,
+          "max_ms": 740.3200410044519,
+          "errors": {}
+        },
+        "search": {
+          "requests": 11551,
+          "successes": 11551,
+          "success_percent": 100.0,
+          "requests_per_second": 32.044823140502395,
+          "successful_requests_per_second": 32.044823140502395,
+          "median_ms": 232.1462919935584,
+          "p95_ms": 385.78487499034964,
+          "successful_p95_ms": 385.78487499034964,
+          "max_ms": 884.4837499927962,
+          "errors": {}
+        },
+        "filter": {
+          "requests": 11551,
+          "successes": 11551,
+          "success_percent": 100.0,
+          "requests_per_second": 32.044823140502395,
+          "successful_requests_per_second": 32.044823140502395,
+          "median_ms": 178.53916699823458,
+          "p95_ms": 291.07670798839536,
+          "successful_p95_ms": 291.07670798839536,
+          "max_ms": 796.1738749872893,
+          "errors": {}
+        },
+        "later_page": {
+          "requests": 11547,
+          "successes": 11547,
+          "success_percent": 100.0,
+          "requests_per_second": 32.033726327017675,
+          "successful_requests_per_second": 32.033726327017675,
+          "median_ms": 180.6593749934109,
+          "p95_ms": 294.3659170123283,
+          "successful_p95_ms": 294.3659170123283,
+          "max_ms": 834.6265410073102,
+          "errors": {}
+        }
+      }
+    }
+  ],
+  "raw_sha256": {
+    "c1-r1.csv": "dd5452a0f8b11896fe1c27e454eb50ce5a572b0d1a9c9e4e8316a17096a9ffd3",
+    "c1-r2.csv": "11bbe4e7abd2c223a2957af67fe8305a1fa97347809c4082a049da5f72747fab",
+    "c1-r3.csv": "362bac6221d51502d3be6d6a7f8a068ccb377a020b976f16e5d00c134e007e4c",
+    "c10-r1.csv": "0f1b08486bc7226f242e2eaf57e627fad6490c800274a968446e910d9b0206c4",
+    "c10-r2.csv": "374a4f895ca2e780613255e20c1d14c39267c8064ab8e4ac3ffc42f8e19ee033",
+    "c10-r3.csv": "a1c63bd200bdb062288f6086e7b73ac08f53b986187e48aacd36afc7ebfe1f48",
+    "c25-r1.csv": "b24b734694e110f68c63234c28da18a79b1cb83fb8e7c8112197048ac8e6b174",
+    "c25-r2.csv": "600ed7ee605fdaf65a2ad3b88b1357daa3a11f3ab1a97ac87318cd494c688f85",
+    "c25-r3.csv": "e76e8c71ea6c10aec4d1801adaaf1a3c2feca257558eec41302a7b707906c2d9"
+  }
+}

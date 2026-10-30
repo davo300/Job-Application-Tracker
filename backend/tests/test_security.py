@@ -98,3 +98,15 @@ def test_app_factory_uses_its_own_database_configuration():
     assert app.state.engine.url.database == "custom_db"
     with TestClient(app) as client:
         assert client.get("/api/v1/health/live").status_code == 200
+
+
+def test_security_headers_include_rejected_requests():
+    with TestClient(create_app()) as client:
+        for response in [
+            client.get("/api/v1/health/live"),
+            client.post("/api/v1/auth/login", json={}),
+        ]:
+            assert response.headers["cache-control"] == "no-store"
+            assert response.headers["x-content-type-options"] == "nosniff"
+            assert response.headers["x-frame-options"] == "DENY"
+            assert response.headers["referrer-policy"] == "no-referrer"

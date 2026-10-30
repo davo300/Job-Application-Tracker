@@ -58,13 +58,16 @@ function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <header>
         <a className="brand" href="/">
           ◈ <span>Job Application Tracker</span>
         </a>
         <span className="badge">Your next opportunity starts here</span>
       </header>
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {loading ? (
           <p role="status">Opening your workspace…</p>
         ) : user ? (

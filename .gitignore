@@ -1,9 +1,46 @@
+# Local configuration; retain explicitly named example templates.
 .env
+.env.*
+*.env
+!.env.example
+!.env.*.example
+!*.env.example
+
+# Python and frontend build/dependency artifacts.
 .venv/
+venv/
 __pycache__/
+*.py[cod]
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+.coverage
+htmlcov/
 node_modules/
 dist/
 .DS_Store
+*.log
+
+# Private keys, credentials, and database backups (not source migrations).
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+credentials.json
+service-account*.json
+*.dump
+*.dump.*
+*.pgdump
+*.sql.gz
+.backups/
+/backups/
+/job-tracker-deploy*.tar.gz
+
+# Local benchmark observations/session credentials. Sanitized published
+# measurements under docs/benchmarks are intentionally retained.
+benchmarks/results/
+benchmarks/*manifest*.json

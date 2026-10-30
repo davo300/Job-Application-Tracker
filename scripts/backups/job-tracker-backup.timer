@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Job Tracker database backup (Detroit time)
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 America/Detroit
+Persistent=true
+Unit=job-tracker-backup.service
+
+[Install]
+WantedBy=timers.target

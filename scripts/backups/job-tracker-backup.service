@@ -1,0 +1,11 @@
+[Unit]
+Description=Encrypted Job Tracker PostgreSQL backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+UMask=0077
+ExecStart=/usr/local/bin/job-tracker-backup
+TimeoutStartSec=1800

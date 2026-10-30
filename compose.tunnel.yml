@@ -1,0 +1,41 @@
+# Private SSH-tunnel demo only. Do not publish port 8080 on a public interface.
+name: job-tracker-tunnel
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Set database user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set database password}
+      POSTGRES_DB: ${POSTGRES_DB:?Set database name}
+    volumes: ["tunnel_data:/var/lib/postgresql/data"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  migrate:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      db: {condition: service_healthy}
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      ENVIRONMENT: development
+      ALLOWED_ORIGINS: '["http://localhost:18080","http://127.0.0.1:18080"]' 
+    restart: unless-stopped
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.production
+    ports: ["127.0.0.1:8080:8080"]
+    restart: unless-stopped
+    depends_on: [backend]
+volumes:
+  tunnel_data:

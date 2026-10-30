@@ -5,8 +5,11 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from app.api.analysis import router as analysis_router
+from app.api.analytics import router as analytics_router
 from app.api.auth import router as auth_router
 from app.api.health import router
+from app.api.matching import router as matching_router
 from app.api.tracking import router as tracking_router
 from app.core.config import Settings, get_settings
 from app.core.database import build_engine
@@ -47,6 +50,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def tracking_error(request, exc):
         return JSONResponse(status_code=exc.status, content={"detail": exc.detail})
 
+    app.include_router(matching_router, prefix="/api/v1")
+    app.include_router(analysis_router, prefix="/api/v1")
+    app.include_router(analytics_router, prefix="/api/v1")
     app.include_router(tracking_router, prefix="/api/v1")
     app.include_router(auth_router, prefix="/api/v1")
     app.include_router(router, prefix="/api/v1")

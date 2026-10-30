@@ -1,0 +1,5 @@
+{$PUBLIC_HOSTNAME} {
+    encode zstd gzip
+    header Strict-Transport-Security "max-age=86400"
+    reverse_proxy frontend:8080
+}

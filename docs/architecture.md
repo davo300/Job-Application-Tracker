@@ -29,7 +29,9 @@ new migration is introduced.
 - `core`: configuration, password/token utilities, HTTP guards, and rate limiting.
 
 Authentication and tracking routes, schemas, services, and repositories are
-implemented. Analysis, matching, and analytics remain planned boundaries.
+implemented. Dashboard analytics uses an authenticated reporting endpoint and a
+single joined snapshot; deterministic analysis is implemented through a provider contract and versioned
+JSONB results; deterministic matching uses revisioned profiles and immutable input snapshots.
 
 ## History and reproducibility
 

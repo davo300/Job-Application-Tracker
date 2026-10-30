@@ -1,0 +1,23 @@
+# Apply over compose.tunnel.yml to retain the existing project and database volume.
+# docker compose -f compose.tunnel.yml -f compose.public.yml up -d
+services:
+  backend:
+    environment:
+      ENVIRONMENT: production
+      ALLOWED_ORIGINS: '["https://${PUBLIC_HOSTNAME:?Set the DNS hostname without protocol}"]'
+  edge:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      PUBLIC_HOSTNAME: ${PUBLIC_HOSTNAME:?Set the DNS hostname without protocol}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [frontend]
+volumes:
+  caddy_data:
+  caddy_config:
